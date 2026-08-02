@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JustUp.ai — הסוכן AI שמוכר בשבילך</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#4F46E5;--secondary:#7C3AED;--accent:#06B6D4;--dark:#0F172A;--gray:#64748B;--light:#F8FAFC}
+body{font-family:'Heebo',sans-serif;color:var(--dark);background:var(--light);overflow-x:hidden}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* Nav */
+nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(0,0,0,.05)}
+nav .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:1.5rem;font-weight:900;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav a.cta-btn{padding:10px 24px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;text-decoration:none;font-weight:500;font-size:.9rem;transition:transform .2s}
+nav a.cta-btn:hover{transform:scale(1.05)}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:80px;background:linear-gradient(160deg,#EEF2FF 0%,#F5F3FF 40%,#ECFEFF 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(79,70,229,.12),transparent 70%);top:-200px;left:-200px}
+.hero::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.1),transparent 70%);bottom:-100px;right:-100px}
+.hero .container{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1}
+.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;line-height:1.3;margin-bottom:24px;background:linear-gradient(135deg,var(--dark),var(--primary));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:clamp(1.1rem,2.5vw,1.4rem);color:var(--gray);max-width:640px;line-height:1.7;margin-bottom:40px}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.btn-primary{padding:16px 40px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-size:1.1rem;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 8px 32px rgba(79,70,229,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(79,70,229,.4)}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:100px;background:rgba(79,70,229,.08);color:var(--primary);font-size:.85rem;font-weight:500;margin-bottom:24px}
+.badge::before{content:'';width:8px;height:8px;border-radius:50%;background:#10B981;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* Features */
+.features{padding:120px 0;background:#fff}
+.section-title{text-align:center;font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:900;margin-bottom:16px}
+.section-sub{text-align:center;color:var(--gray);font-size:1.1rem;margin-bottom:64px}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px}
+.feature-card{padding:40px 32px;border-radius:20px;background:var(--light);border:1px solid rgba(0,0,0,.05);transition:transform .3s,box-shadow .3s}
+.feature-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.08)}
+.feature-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:20px;background:linear-gradient(135deg,rgba(79,70,229,.1),rgba(124,58,237,.1))}
+.feature-card h3{font-size:1.2rem;font-weight:700;margin-bottom:12px}
+.feature-card p{color:var(--gray);line-height:1.7;font-size:.95rem}
+
+/* How it works */
+.how{padding:120px 0;background:linear-gradient(160deg,#F5F3FF,#EEF2FF)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;margin-top:64px}
+.step{text-align:center;position:relative}
+.step-num{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-size:1.5rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.step h3{font-size:1.15rem;font-weight:700;margin-bottom:8px}
+.step p{color:var(--gray);font-size:.95rem;line-height:1.6}
+
+/* Pricing */
+.pricing{padding:120px 0;background:#fff}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;margin-top:64px}
+.price-card{padding:40px 32px;border-radius:20px;border:2px solid rgba(0,0,0,.06);text-align:center;transition:transform .3s,box-shadow .3s;position:relative}
+.price-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.08)}
+.price-card.featured{border-color:var(--primary);background:linear-gradient(180deg,rgba(79,70,229,.03),rgba(124,58,237,.03))}
+.price-card.featured::before{content:'פופולרי';position:absolute;top:-14px;right:50%;transform:translateX(50%);padding:6px 20px;border-radius:100px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-size:.8rem;font-weight:700}
+.price-card h3{font-size:1.2rem;font-weight:700;margin-bottom:8px}
+.price-amount{font-size:2.8rem;font-weight:900;margin:16px 0 4px}
+.price-amount span{font-size:1rem;font-weight:400;color:var(--gray)}
+.price-period{color:var(--gray);font-size:.9rem;margin-bottom:24px}
+.price-features{list-style:none;text-align:start;margin-bottom:32px}
+.price-features li{padding:8px 0;color:var(--gray);font-size:.9rem;border-bottom:1px solid rgba(0,0,0,.04)}
+.price-features li::before{content:'✓';color:var(--primary);font-weight:700;margin-left:8px}
+
+/* CTA / Waitlist */
+.waitlist{padding:120px 0;background:linear-gradient(135deg,var(--dark),#1E1B4B);color:#fff;text-align:center}
+.waitlist h2{font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:900;margin-bottom:16px}
+.waitlist p{color:rgba(255,255,255,.7);font-size:1.1rem;margin-bottom:40px}
+.waitlist-form{display:flex;gap:12px;max-width:480px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.waitlist-form input{flex:1;min-width:240px;padding:16px 20px;border-radius:12px;border:none;font-size:1rem;font-family:inherit;direction:ltr}
+.waitlist-form button{padding:16px 32px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border:none;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;transition:transform .2s}
+.waitlist-form button:hover{transform:scale(1.05)}
+.success-msg{display:none;color:#10B981;margin-top:16px;font-weight:500}
+
+/* Footer */
+footer{padding:32px 0;background:var(--dark);color:rgba(255,255,255,.5);text-align:center;font-size:.85rem}
+
+@media(max-width:768px){
+  .hero{min-height:auto;padding:120px 0 80px}
+  .features,.how,.pricing,.waitlist{padding:80px 0}
+}
+</style>
+</head>
+<body>
+
+<nav><div class="container"><div class="logo">JustUp.ai</div><a href="#waitlist" class="cta-btn">הצטרפו לרשימת ההמתנה</a></div></nav>
+
+<section class="hero">
+<div class="container">
+<div class="badge">🚀 Early Access — מקומות מוגבלים</div>
+<h1>הסוכן AI שמוכר בשבילך.<br>Just Up.</h1>
+<p>מ-URL של האתר שלך לסוכן מכירות חי — תוך 5 דקות. בלי קוד. בלי מפתח.</p>
+<div class="hero-cta"><a href="#waitlist" class="btn-primary">רוצה גישה מוקדמת →</a></div>
+</div>
+</section>
+
+<section class="features">
+<div class="container">
+<h2 class="section-title">למה JustUp?</h2>
+<p class="section-sub">לא עוד צ'אטבוט תמיכה. סוכן מכירות אמיתי שסוגר עסקאות.</p>
+<div class="features-grid">
+<div class="feature-card"><div class="feature-icon">💬</div><h3>WhatsApp-First</h3><p>הסוכן פועל ישירות בוואטסאפ — שם שהלקוחות שלך כבר נמצאים. בלי אפליקציות, בלי חיכוכים.</p></div>
+<div class="feature-card"><div class="feature-icon">🇮🇱</div><h3>עברית Native</h3><p>בנוי מהיסוד לעברית. מבין סלנג, הקשר עסקי ישראלי, ומדבר בגובה העיניים.</p></div>
+<div class="feature-card"><div class="feature-icon">⚡</div><h3>Plug & Play — 5 דקות</h3><p>מזינים URL, המערכת לומדת הכל לבד. בלי אינטגרציות מסובכות, בלי צוות פיתוח.</p></div>
+<div class="feature-card"><div class="feature-icon">🎯</div><h3>מכירות, לא תמיכה</h3><p>מאומן למכור — מזהה הזדמנויות, מתגבר על התנגדויות, ודוחף לסגירה.</p></div>
+</div>
+</div>
+</section>
+
+<section class="how">
+<div class="container">
+<h2 class="section-title">איך זה עובד?</h2>
+<p class="section-sub">שלושה צעדים וסוכן המכירות שלך באוויר</p>
+<div class="steps">
+<div class="step"><div class="step-num">1</div><h3>מזינים URL</h3><p>פשוט מדביקים את הלינק לאתר או לדף הנחיתה שלכם</p></div>
+<div class="step"><div class="step-num">2</div><h3>המערכת לומדת את העסק</h3><p>AI סורק את התוכן, מבין את המוצר, הקהל והטון</p></div>
+<div class="step"><div class="step-num">3</div><h3>הסוכן מתחיל למכור</h3><p>סוכן מכירות חי בוואטסאפ — עונה, משכנע וסוגר</p></div>
+</div>
+</div>
+</section>
+
+<section class="pricing">
+<div class="container">
+<h2 class="section-title">תמחור</h2>
+<p class="section-sub">ללא התחייבות. בטלו בכל רגע.</p>
+<div class="pricing-grid">
+<div class="price-card">
+<h3>Starter</h3>
+<div class="price-amount">₪199<span>/חודש</span></div>
+<p class="price-period">לעסקים קטנים שרוצים להתחיל</p>
+<ul class="price-features">
+<li>סוכן אחד פעיל</li>
+<li>עד 500 שיחות/חודש</li>
+<li>אינטגרציית WhatsApp</li>
+<li>דוחות בסיסיים</li>
+</ul>
+<a href="#waitlist" class="btn-primary" style="display:inline-block;font-size:.9rem;padding:12px 32px">התחלה</a>
+</div>
+<div class="price-card featured">
+<h3>Pro</h3>
+<div class="price-amount">₪499<span>/חודש</span></div>
+<p class="price-period">לעסקים שרוצים לצמוח</p>
+<ul class="price-features">
+<li>עד 3 סוכנים</li>
+<li>שיחות ללא הגבלה</li>
+<li>CRM אינטגרציה</li>
+<li>A/B testing</li>
+<li>דוחות מתקדמים</li>
+</ul>
+<a href="#waitlist" class="btn-primary" style="display:inline-block;font-size:.9rem;padding:12px 32px">הכי פופולרי</a>
+</div>
+<div class="price-card">
+<h3>Business</h3>
+<div class="price-amount">₪999<span>/חודש</span></div>
+<p class="price-period">לצוותי מכירות ואנטרפרייז</p>
+<ul class="price-features">
+<li>סוכנים ללא הגבלה</li>
+<li>API גישה מלאה</li>
+<li>מנהל הצלחה ייעודי</li>
+<li>SLA מובטח</li>
+<li>התאמה אישית מלאה</li>
+</ul>
+<a href="#waitlist" class="btn-primary" style="display:inline-block;font-size:.9rem;padding:12px 32px">דברו איתנו</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="waitlist" id="waitlist">
+<div class="container">
+<h2>מוכנים לסוכן שמוכר בשבילכם?</h2>
+<p>השאירו מייל ותהיו הראשונים לקבל גישה</p>
+<form class="waitlist-form" onsubmit="return handleSubmit(event)">
+<input type="email" placeholder="your@email.com" required>
+<button type="submit">רוצה גישה 🚀</button>
+</form>
+<p class="success-msg" id="successMsg">🎉 נרשמת בהצלחה! ניצור קשר בקרוב.</p>
+</div>
+</section>
+
+<footer><div class="container">© 2026 JustUp.ai — כל הזכויות שמורות</div></footer>
+
+<script>
+function handleSubmit(e){e.preventDefault();e.target.style.display='none';document.getElementById('successMsg').style.display='block';return false}
+</script>
+</body>
+</html>
